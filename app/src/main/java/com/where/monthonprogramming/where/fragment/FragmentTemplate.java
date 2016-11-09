@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import com.where.monthonprogramming.where.R;
 
 
-/**
- * Created by nuuneoi on 11/16/2014.
- */
+
 public class FragmentTemplate extends Fragment {
 
     public FragmentTemplate() {

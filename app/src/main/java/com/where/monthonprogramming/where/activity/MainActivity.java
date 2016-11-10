@@ -1,11 +1,10 @@
 package com.where.monthonprogramming.where.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.where.monthonprogramming.where.R;
 import com.where.monthonprogramming.where.fragment.LandingFragment;
-import com.where.monthonprogramming.where.fragment.SearchFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
             //First create
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, new SearchFragment())
+                    .add(R.id.contentContainer, new LandingFragment())
                     .commit();
         }
     }

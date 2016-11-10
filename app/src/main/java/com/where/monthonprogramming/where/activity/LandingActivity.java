@@ -2,12 +2,15 @@ package com.where.monthonprogramming.where.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.where.monthonprogramming.where.R;
 import com.where.monthonprogramming.where.fragment.LandingFragment;
 
 
-public class MainActivity extends AppCompatActivity {
+public class LandingActivity extends AppCompatActivity {
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,5 +24,12 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.contentContainer, new LandingFragment())
                     .commit();
         }
+
+        initInstances();
+    }
+
+    private void initInstances() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 }

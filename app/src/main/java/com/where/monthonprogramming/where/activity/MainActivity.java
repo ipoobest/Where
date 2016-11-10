@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.where.monthonprogramming.where.R;
 import com.where.monthonprogramming.where.fragment.LandingFragment;
+import com.where.monthonprogramming.where.fragment.SearchFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
             //First create
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, new LandingFragment())
+                    .add(R.id.contentContainer, new SearchFragment())
                     .commit();
         }
     }

@@ -1,4 +1,4 @@
-package com.where.monthonprogramming.where.manager;
+package com.where.monthonprogramming.where.Util;
 
 import android.content.Context;
 

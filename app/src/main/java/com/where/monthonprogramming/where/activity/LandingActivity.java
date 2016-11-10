@@ -1,14 +1,20 @@
 package com.where.monthonprogramming.where.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.where.monthonprogramming.where.R;
 import com.where.monthonprogramming.where.fragment.LandingFragment;
+import com.where.monthonprogramming.where.fragment.NfctabFragment;
+import com.where.monthonprogramming.where.fragment.SearchFragment;
 
 
-public class LandingActivity extends AppCompatActivity {
+public class LandingActivity extends AppCompatActivity
+        implements LandingFragment.Fragmentlistener{
 
     Toolbar toolbar;
 
@@ -31,5 +37,40 @@ public class LandingActivity extends AppCompatActivity {
     private void initInstances() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
     }
-}
+
+
+    @Override
+    public void onButtonClickNFC(ImageButton btnNfc) {
+        //TODO Handle
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.contentContainer, new NfctabFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onButtonClickSearch(ImageButton btnSearch) {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.contentContainer, new SearchFragment())
+                .addToBackStack(null)
+                .commit();
+
+    }
+
+    @Override
+    public void onButtonClickMap(ImageButton btnMap) {
+        //
+    }
+
+//    @Override
+//    public void onButtonClickMap(ImageButton btnNap) {
+//        getSupportFragmentManager().beginTransaction()
+//                .add(R.id.contentContainer, new NfctabFragment())
+//                .addToBackStack(null)
+//                .commit();
+
+    }

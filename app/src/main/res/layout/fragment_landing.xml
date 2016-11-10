@@ -19,7 +19,7 @@
 
 
         <ImageButton
-            android:id="@+id/nfc_icon1"
+            android:id="@+id/nfc_btn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
@@ -43,7 +43,7 @@
         android:layout_weight="1">
 
         <ImageButton
-            android:id="@+id/search_icon1"
+            android:id="@+id/nfc_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
@@ -64,7 +64,7 @@
         android:layout_marginBottom="12dp"
         android:layout_weight="1">
     <ImageButton
-            android:id="@+id/location_icon1"
+            android:id="@+id/nfc_map"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"

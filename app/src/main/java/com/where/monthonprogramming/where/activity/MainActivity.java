@@ -4,7 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.where.monthonprogramming.where.R;
-import com.where.monthonprogramming.where.fragment.SplashFragment;
+import com.where.monthonprogramming.where.fragment.LandingFragment;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
             //First create
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, new SplashFragment())
+                    .add(R.id.contentContainer, new LandingFragment())
                     .commit();
         }
     }

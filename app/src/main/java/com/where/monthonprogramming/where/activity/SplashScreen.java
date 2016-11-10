@@ -22,7 +22,7 @@ public class SplashScreen extends AppCompatActivity {
         handler = new Handler();
         runnable = new Runnable() {
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                Intent intent = new Intent(SplashScreen.this, LandingActivity.class);
                 startActivity(intent);
                 finish();
             }

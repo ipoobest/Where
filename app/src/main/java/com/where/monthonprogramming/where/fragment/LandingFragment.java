@@ -19,7 +19,6 @@ import static com.where.monthonprogramming.where.R.mipmap.a;
 public class LandingFragment extends Fragment {
     ImageButton btnNfc, btnSearch, btnMap;
     android.support.v7.widget.CardView image;
-    com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageButton imageButton;
 
 
 

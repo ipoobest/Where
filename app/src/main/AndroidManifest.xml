@@ -18,9 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ResultAvtivity" />
+        <activity android:name=".activity.ResultActivity" />
         <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.LandingActivity" />
         <activity android:name=".activity.MapActivity"></activity>
     </application>

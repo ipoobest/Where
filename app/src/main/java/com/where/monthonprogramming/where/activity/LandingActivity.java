@@ -74,7 +74,9 @@ public class LandingActivity extends AppCompatActivity
             Toast.makeText(this, "This device doesn't support NFC.",
                     Toast.LENGTH_LONG)
                     .show();
-            finish();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.contentContainer, new LandingFragment())
+                    .commit();
             return;
         }
         if (!mNfcAdapter.isEnabled()) {
@@ -115,7 +117,9 @@ public class LandingActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        setupForegroundDispatch(this, mNfcAdapter);
+        if (mNfcAdapter != null) {
+            setupForegroundDispatch(this, mNfcAdapter);
+        }
     }
 
     @Override

@@ -54,16 +54,15 @@ public class LandingActivity extends AppCompatActivity
 
     @Override
     public void onButtonClickSearch(ImageButton btnSearch) {
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.contentContainer, new SearchFragment())
-                .addToBackStack(null)
-                .commit();
+        Intent intent = new Intent(LandingActivity.this, SearchActivity.class);
+        startActivity(intent);
 
     }
 
     @Override
     public void onButtonClickMap(ImageButton btnMap) {
-        //
+        Intent intent = new Intent(LandingActivity.this, MapActivity.class);
+        startActivity(intent);
     }
 
 //    @Override

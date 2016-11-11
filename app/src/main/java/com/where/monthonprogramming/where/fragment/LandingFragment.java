@@ -70,6 +70,15 @@ public class LandingFragment extends Fragment {
                 listener.onButtonClickSearch(btnSearch);
             }
         });
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnMap = (ImageButton)rootView.findViewById(R.id.nfc_map);
+                Fragmentlistener listener =(Fragmentlistener)getActivity();
+                listener.onButtonClickMap(btnMap);
+
+            }
+        });
     }
 
     @Override

@@ -110,7 +110,7 @@ public class LandingActivity extends AppCompatActivity
 //                .add(R.id.contentContainer, new NfctabFragment())
 //                .addToBackStack(null)
 //                .commit();
-
+//4
 
     @Override
     protected void onResume() {

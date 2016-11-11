@@ -84,7 +84,7 @@ public class SearchFragment extends Fragment {
             }
         });
     }
-//g
+//g4
     @Override
     public void onStop() {
         super.onStop();

@@ -27,7 +27,7 @@ public class HttpManager {
 
         Retrofit retrofit = new Retrofit.Builder()
                 //ใส่ base url ของ service เรา
-                .baseUrl("")
+                .baseUrl("https://nuuneoi.com/courses/500px/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

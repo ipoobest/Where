@@ -1,5 +1,10 @@
 package com.where.monthonprogramming.where.manager.http;
 
+import android.app.Fragment;
+
+import com.where.monthonprogramming.where.dao.BookItemDao;
+import com.where.monthonprogramming.where.fragment.SearchFragment;
+
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -10,6 +15,7 @@ import retrofit2.http.POST;
  */
 
 public interface ApiService {
-    @POST("book")
-    Call<Objects> loadBooklist();
+    @POST("list")
+    Call<BookItemDao> loadPhotolist();
+
 }

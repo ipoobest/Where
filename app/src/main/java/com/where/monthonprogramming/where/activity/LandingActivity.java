@@ -124,7 +124,9 @@ public class LandingActivity extends AppCompatActivity
 
     @Override
     protected void onPause() {
-        stopForegroundDispatch(this, mNfcAdapter);
+        if(mNfcAdapter != null) {
+            stopForegroundDispatch(this, mNfcAdapter);
+        }
         super.onPause();
     }
 

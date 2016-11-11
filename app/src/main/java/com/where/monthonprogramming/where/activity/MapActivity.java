@@ -15,7 +15,7 @@ public class MapActivity extends AppCompatActivity {
 
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, new MapFragment())
+                    .replace(R.id.contentContainer, new MapFragment())
                     .commit();
         }
     }

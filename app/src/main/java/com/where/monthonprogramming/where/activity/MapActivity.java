@@ -4,22 +4,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.where.monthonprogramming.where.R;
-import com.where.monthonprogramming.where.fragment.LandingFragment;
-import com.where.monthonprogramming.where.fragment.SearchFragment;
+import com.where.monthonprogramming.where.fragment.MapFragment;
 
-
-public class MainActivity extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_map);
 
         if (savedInstanceState == null){
-            //First create
-
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, new SearchFragment())
+                    .replace(R.id.contentContainer, new MapFragment())
                     .commit();
         }
     }

@@ -7,13 +7,14 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import com.where.monthonprogramming.where.R;
 
 
 public class MapFragment extends Fragment {
     ViewPager viewPager;
+    int[] mapLibary = {R.drawable.bg,R.drawable.bg2};
 
     public MapFragment() {
         super();
@@ -41,7 +42,7 @@ public class MapFragment extends Fragment {
         viewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
-                return 7;
+                return mapLibary.length;
             }
 
             @Override
@@ -51,10 +52,12 @@ public class MapFragment extends Fragment {
 
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
-                Button btn = new Button(container.getContext());
-                btn.setText("Position" + position);
-                container.addView(btn);
-                return btn;
+
+                ImageView maplib = new ImageView(container.getContext());
+                maplib.setImageResource(mapLibary[position]);
+
+                container.addView(maplib);
+                return maplib;
             }
 
             @Override

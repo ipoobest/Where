@@ -1,25 +1,37 @@
 package com.where.monthonprogramming.where.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.where.monthonprogramming.where.R;
 
 
 public class SearchFragment extends Fragment {
 
+    String result;
+
     public SearchFragment() {
         super();
     }
 
-    public static SearchFragment newInstance() {
+    public static SearchFragment newInstance(String result) {
         SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
+        args.putString("result", result);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        result = getArguments().getString("result");
+        Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
     }
 
     @Override

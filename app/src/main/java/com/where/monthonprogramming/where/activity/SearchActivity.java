@@ -3,6 +3,9 @@ package com.where.monthonprogramming.where.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.where.monthonprogramming.where.R;
 import com.where.monthonprogramming.where.fragment.SearchFragment;
@@ -28,11 +31,9 @@ public class SearchActivity extends AppCompatActivity {
 
             initInstances();
         }
-    }
-
-    private void initInstances() {
-
-
 
     }
+
+    private void initInstances() {}
+
 }

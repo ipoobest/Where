@@ -15,7 +15,7 @@ import retrofit2.http.POST;
  */
 
 public interface ApiService {
-    @POST("list")
+    @POST("query")
     Call<BookItemDao> loadPhotolist();
 
 }

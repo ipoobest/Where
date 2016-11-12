@@ -1,12 +1,16 @@
 package com.where.monthonprogramming.where.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.where.monthonprogramming.where.R;
@@ -53,7 +57,7 @@ public class SearchFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         result = getArguments().getString("result");
-        Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -76,56 +80,8 @@ public class SearchFragment extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 if(query != null && !query.isEmpty()){
                     //Toast.makeText(getActivity(),query,Toast.LENGTH_SHORT).show();
-                    Call<BookItemDao> call = HttpManager.getInstance()
-                            .getService()
-                            .loadPhotolist();
                     setQuery(query);
-
-                    call.enqueue(new Callback<BookItemDao>() {
-                        @Override
-                        public void onResponse(Call<BookItemDao> call,
-                                               Response<BookItemDao> response) {
-                            String query = getQuery();
-
-                            if(response.isSuccessful()){
-                                PhotoItemCollectionDao dao = response.body();
-
-                                for(int i=0;i<dao.getData().size()+1;i++) {
-                                    if (dao.getData().get(i).getCaption().equals(query)||
-                                            dao.getData().get(i).getId().equals(query)) {
-                                        Toast.makeText(getContext(),
-                                                dao.getData().get(i).getCaption(),
-                                                Toast.LENGTH_SHORT)
-                                                .show();
-                                        break;
-                                    }
-                                }
-
-
-                            }else{
-                                try {
-                                    Toast.makeText(getContext(),response
-                                            .errorBody()
-                                            .string(),
-                                            Toast.LENGTH_SHORT)
-                                            .show();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<BookItemDao> call,
-                                              Throwable t) {
-
-                            Toast.makeText(getContext(),t.toString(),
-                                    Toast.LENGTH_SHORT)
-                                    .show();
-
-                        }
-                    });
+                    callService();
                     return true;
                 }
                 else {
@@ -145,6 +101,8 @@ public class SearchFragment extends Fragment {
         });
 
     }
+
+
 
     @Override
     public void onStart() {
@@ -174,6 +132,71 @@ public class SearchFragment extends Fragment {
         if (savedInstanceState != null) {
             // Restore Instance State here
         }
+    }
+
+    private void callService() {
+
+        Call<BookItemDao> call = HttpManager.getInstance()
+                .getService()
+                .loadPhotolist();
+
+        call.enqueue(new Callback<BookItemDao>() {
+            @Override
+            public void onResponse(Call<BookItemDao> call,
+                                   Response<BookItemDao> response) {
+                String query = getQuery();
+
+                if(response.isSuccessful()){
+                    BookItemDao dao = response.body();
+
+
+
+                        if (dao.getBookName().equals(query)||
+                                dao.getId().equals(query)) {
+                            Toast.makeText(getContext(),
+                                    dao.getBookName(),
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+
+                        }else {
+                            //Toast.makeText(getActivity(),"NOT FOUND",Toast.LENGTH_SHORT).show();
+                            new AlertDialog.Builder(getContext())
+                                    .setTitle("Not found")
+                                    .setMessage("Please check name or id book again.")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                                  }).setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
+
+
+
+                    }
+
+                }else{
+                    try {
+                        Toast.makeText(getContext(),response
+                                        .errorBody()
+                                        .string(),
+                                Toast.LENGTH_SHORT)
+                                .show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BookItemDao> call,
+                                  Throwable t) {
+
+                Toast.makeText(getContext(),t.toString(),
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
     }
 
     @Override

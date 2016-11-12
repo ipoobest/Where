@@ -3,6 +3,7 @@ package com.where.monthonprogramming.where.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,9 @@ import static com.where.monthonprogramming.where.R.mipmap.a;
 
 public class LandingFragment extends Fragment {
     ImageButton btnNfc, btnSearch, btnMap;
+    android.support.v7.widget.CardView image;
+
+
 
     public interface Fragmentlistener{
         void onButtonClickNFC(ImageButton btnNfc);
@@ -79,6 +83,7 @@ public class LandingFragment extends Fragment {
 
             }
         });
+
     }
 
     @Override

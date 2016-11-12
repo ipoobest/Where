@@ -27,7 +27,7 @@ public class HttpManager {
 
         Retrofit retrofit = new Retrofit.Builder()
                 //ใส่ base url ของ service เรา
-                .baseUrl("")
+                .baseUrl("192.168.43.90:3000/book/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

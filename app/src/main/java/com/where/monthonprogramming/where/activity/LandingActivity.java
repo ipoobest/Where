@@ -1,5 +1,6 @@
 package com.where.monthonprogramming.where.activity;
 
+import android.app.Application;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.where.monthonprogramming.where.R;
@@ -30,7 +32,6 @@ public class LandingActivity extends AppCompatActivity
         implements LandingFragment.Fragmentlistener{
 
     Toolbar toolbar;
-
     public static final String MIME_TEXT_PLAIN = "text/plain";
     public static final String TAG = "NfcDemo";
     private NfcAdapter mNfcAdapter;
@@ -39,7 +40,6 @@ public class LandingActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
-
         if (savedInstanceState == null){
             //First create
 
@@ -56,7 +56,6 @@ public class LandingActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-
 
     }
 
@@ -95,8 +94,10 @@ public class LandingActivity extends AppCompatActivity
 
     @Override
     public void onButtonClickSearch(ImageButton btnSearch) {
+
         Intent intent = new Intent(LandingActivity.this, SearchActivity.class);
         startActivity(intent);
+
 
     }
 

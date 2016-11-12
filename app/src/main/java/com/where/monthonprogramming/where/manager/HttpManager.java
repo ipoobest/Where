@@ -23,7 +23,7 @@ public class HttpManager {
     private ApiService service;
 
     private HttpManager() {
-        mContext = Contextor.getInstance().getContext();
+        mContext =  Contextor.getInstance().getContext();
 
         Retrofit retrofit = new Retrofit.Builder()
                 //ใส่ base url ของ service เรา

@@ -61,6 +61,8 @@ public class SearchFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
             // Restore Instance State here
+
+                }
+            }
         }
-    }
-}
+

@@ -10,7 +10,4 @@
         android:scaleType="fitCenter"
         android:background="#AED581" />
 
-
-
-
 </RelativeLayout>

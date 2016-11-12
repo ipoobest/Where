@@ -7,7 +7,7 @@ import android.widget.Toast;
 import com.where.monthonprogramming.where.R;
 import com.where.monthonprogramming.where.fragment.ResultFragment;
 
-public class ResultAvtivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -83,7 +83,7 @@ public class CustomView extends View {
         canvas.drawLine(0,getMeasuredHeight()*86/100,getMeasuredWidth()*1/4,getMeasuredHeight()*95/100,p);
 
         canvas.drawLine(0,getMeasuredHeight()*90/100,getMeasuredWidth()*1/4,getMeasuredHeight(),p);
-
+//asd
 
     }
 

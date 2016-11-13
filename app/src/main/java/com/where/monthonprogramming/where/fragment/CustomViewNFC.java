@@ -42,8 +42,8 @@ public class CustomViewNFC extends View{
         super.onDraw(canvas);
         Paint p = new Paint();
         p.setColor(0xFFFF0000);
-        canvas.drawCircle(getMeasuredWidth()*26/100,getMeasuredHeight()*75/100,getMeasuredWidth()/20,p);
-        canvas.drawCircle(getMeasuredWidth()*11/100,getMeasuredHeight()*20/100,getMeasuredWidth()/20,p);
-        canvas.drawCircle(getMeasuredWidth()*65/100,getMeasuredHeight()*45/100,getMeasuredWidth()/20,p);
+        canvas.drawCircle(getMeasuredWidth()*26/100,getMeasuredHeight()*75/100+60,getMeasuredWidth()/20,p);
+        canvas.drawCircle(getMeasuredWidth()*11/100,getMeasuredHeight()*20/100+60,getMeasuredWidth()/20,p);
+        canvas.drawCircle(getMeasuredWidth()*65/100,getMeasuredHeight()*45/100+60,getMeasuredWidth()/20,p);
     }
 }

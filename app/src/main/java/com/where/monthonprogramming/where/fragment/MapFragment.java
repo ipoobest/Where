@@ -19,6 +19,7 @@ public class MapFragment extends Fragment {
             R.drawable.shelf333, R.drawable.shelf44, R.drawable.shelf55, R.drawable.shelf666, R.drawable.shelf777};
 
     public MapFragment() {
+        //
         super();
     }
 

@@ -5,12 +5,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.where.monthonprogramming.where.R;
@@ -32,6 +34,8 @@ public class SearchFragment extends Fragment {
 
     String result;
     com.lapism.searchview.SearchView searchView;
+
+
 
 
     private static String query;
@@ -74,6 +78,8 @@ public class SearchFragment extends Fragment {
 
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
+
+
 
         searchView = (com.lapism.searchview.SearchView) rootView.findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new com.lapism
@@ -217,10 +223,7 @@ public class SearchFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
-
 
 
 

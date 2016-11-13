@@ -30,6 +30,9 @@ import retrofit2.Response;
 
 public class SearchFragment extends Fragment {
 
+    String result;
+    com.lapism.searchview.SearchView searchView;
+
 
     private static String query;
 
@@ -41,8 +44,6 @@ public class SearchFragment extends Fragment {
         this.query = query;
     }
 
-    String result;
-    com.lapism.searchview.SearchView searchView;
 
     public SearchFragment() {
         super();
@@ -216,7 +217,11 @@ public class SearchFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+
     }
+
+
 
 
 }

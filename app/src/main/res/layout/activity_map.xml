@@ -1,26 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_map"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.where.monthonprogramming.where.activity.MapActivity">
 
-    <FrameLayout
-        android:id="@id/contentContainer"
+    <!-- Content -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+        <FrameLayout
+            android:id="@+id/contentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <!-- Menu -->
     <LinearLayout
         android:layout_width="@dimen/drawer_menu_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#ffffff"
         android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bg"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:src="@drawable/bg4"
+                android:scaleType="centerCrop"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo1"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <View
+                android:id="@+id/pink"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/view1"
+                android:layout_marginLeft="24dp"
+                android:background="#ff00ff" />
+
+            <TextView
+                android:id="@+id/textPink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/pink"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/pink"
+                android:text="Lift" />
+
+            <View
+                android:id="@+id/red"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/pink"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="12dp"
+                android:background="#f02828" />
+
+            <TextView
+                android:id="@+id/textRed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/red"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/red"
+                android:text="Stair" />
+
+            <View
+                android:id="@+id/blue"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/red"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="12dp"
+                android:background="#7878f0" />
+
+            <TextView
+                android:id="@+id/textBlue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/blue"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/blue"
+                android:text="Toilet" />
+
+            <View
+                android:id="@+id/yellow"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/blue"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="12dp"
+                android:background="#fff000" />
+
+            <TextView
+                android:id="@+id/textYellow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/yellow"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/yellow"
+                android:text="NFC" />
+
+        </RelativeLayout>
+
+
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

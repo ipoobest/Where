@@ -15,7 +15,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/shelf111"
+        android:src="@drawable/shelf1"
         android:scaleType="fitXY"
 
         />

@@ -7,10 +7,10 @@
 
     tools:context="com.where.monthonprogramming.where.activity.SplashScreen">
 
- <View
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:background="#8BC34A"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#8BC34A"/>
 
     <TextView
         android:layout_width="wrap_content"

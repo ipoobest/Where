@@ -16,9 +16,9 @@ import static android.R.attr.id;
 
 public class MapFragment extends Fragment {
     ViewPager viewPager;
-    int[] mapLibary = {R.drawable.shelf111,
+    int[] mapLibary = {R.drawable.shelf1,
             R.drawable.shelf2,
-            R.drawable.shelf333, R.drawable.shelf44, R.drawable.shelf55, R.drawable.shelf666, R.drawable.shelf777};
+            R.drawable.shelf3, R.drawable.shelf4, R.drawable.shelf5, R.drawable.shelf6, R.drawable.shelf7};
 
     public MapFragment() {
         //

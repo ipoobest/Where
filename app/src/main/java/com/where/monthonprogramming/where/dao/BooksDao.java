@@ -12,191 +12,103 @@ public class BooksDao {
     @SerializedName("_id")
     @Expose
     private String id;
-    @SerializedName("title")
+    @SerializedName("name")
     @Expose
-    private String title;
-    @SerializedName("genre")
+    private String name;
+    @SerializedName("bookId")
     @Expose
-    private String genre;
-    @SerializedName("author")
+    private String bookId;
+    @SerializedName("floor")
     @Expose
-    private String author;
-    @SerializedName("publisher")
+    private String floor;
+    @SerializedName("viewId")
     @Expose
-    private String publisher;
-    @SerializedName("pages")
-    @Expose
-    private String pages;
-    @SerializedName("description")
-    @Expose
-    private String description;
+    private String viewId;
     @SerializedName("__v")
     @Expose
     private Integer v;
-    @SerializedName("create_date")
-    @Expose
-    private String createDate;
 
     /**
-     *
-     * @return
-     * The id
+     * @return The id
      */
     public String getId() {
         return id;
     }
 
     /**
-     *
-     * @param id
-     * The _id
+     * @param id The _id
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     *
-     * @return
-     * The title
+     * @return The name
      */
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
     /**
-     *
-     * @param title
-     * The title
+     * @param name The name
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
-     *
-     * @return
-     * The genre
+     * @return The bookId
      */
-    public String getGenre() {
-        return genre;
+    public String getBookId() {
+        return bookId;
     }
 
     /**
-     *
-     * @param genre
-     * The genre
+     * @param bookId The bookId
      */
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
     }
 
     /**
-     *
-     * @return
-     * The author
+     * @return The floor
      */
-    public String getAuthor() {
-        return author;
+    public String getFloor() {
+        return floor;
     }
 
     /**
-     *
-     * @param author
-     * The author
+     * @param floor The floor
      */
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setFloor(String floor) {
+        this.floor = floor;
     }
 
     /**
-     *
-     * @return
-     * The publisher
+     * @return The viewId
      */
-    public String getPublisher() {
-        return publisher;
+    public String getViewId() {
+        return viewId;
     }
 
     /**
-     *
-     * @param publisher
-     * The publisher
+     * @param viewId The viewId
      */
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void setViewId(String viewId) {
+        this.viewId = viewId;
     }
 
     /**
-     *
-     * @return
-     * The pages
-     */
-    public String getPages() {
-        return pages;
-    }
-
-    /**
-     *
-     * @param pages
-     * The pages
-     */
-    public void setPages(String pages) {
-        this.pages = pages;
-    }
-
-    /**
-     *
-     * @return
-     * The description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     *
-     * @param description
-     * The description
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     *
-     * @return
-     * The v
+     * @return The v
      */
     public Integer getV() {
         return v;
     }
 
     /**
-     *
-     * @param v
-     * The __v
+     * @param v The __v
      */
     public void setV(Integer v) {
         this.v = v;
     }
-
-    /**
-     *
-     * @return
-     * The createDate
-     */
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    /**
-     *
-     * @param createDate
-     * The create_date
-     */
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
 }

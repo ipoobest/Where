@@ -5,14 +5,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.where.monthonprogramming.where.R;
@@ -22,8 +20,7 @@ import com.where.monthonprogramming.where.dao.BooksDao;
 import com.where.monthonprogramming.where.dao.PhotoItemCollectionDao;
 import com.where.monthonprogramming.where.dao.PhotoItemDao;
 import com.where.monthonprogramming.where.manager.HttpManager;
-
-import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,11 +29,7 @@ import retrofit2.Response;
 
 public class SearchFragment extends Fragment {
 
-    String result;
-    com.lapism.searchview.SearchView searchView;
-
-
-
+    TextView textView;
 
     private static String query;
 
@@ -48,6 +41,8 @@ public class SearchFragment extends Fragment {
         this.query = query;
     }
 
+    String result;
+    com.lapism.searchview.SearchView searchView;
 
     public SearchFragment() {
         super();
@@ -71,7 +66,8 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_search, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_search,
+                container, false);
         initInstances(rootView);
         return rootView;
     }
@@ -79,19 +75,22 @@ public class SearchFragment extends Fragment {
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
 
+        textView = (TextView) rootView.findViewById(R.id.textView);
 
-
-        searchView = (com.lapism.searchview.SearchView) rootView.findViewById(R.id.searchView);
+        searchView = (com.lapism.searchview.SearchView) rootView
+                .findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new com.lapism
                 .searchview
                 .SearchView
                 .OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 if(query != null && !query.isEmpty()){
                     //Toast.makeText(getActivity(),query,Toast.LENGTH_SHORT).show();
                     setQuery(query);
                     callService();
+
                     InputMethodManager inputManager = (InputMethodManager)
                             getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -105,13 +104,8 @@ public class SearchFragment extends Fragment {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(newText != null && !newText.isEmpty()){
-
-                    return true;
-                }
-                else {
-                    return false;
-                }
+                if(newText != null && !newText.isEmpty()){return true;}
+                else {return false;}
             }
         });
 
@@ -153,78 +147,44 @@ public class SearchFragment extends Fragment {
 
     private void callService() {
 
-        Call<BooksDao> call = HttpManager.getInstance()
+        Call<List<BooksDao>> call = HttpManager.getInstance()
                 .getService()
-                .loadBooks();
+                .all();
 
-        call.enqueue(new Callback<BooksDao>() {
+        call.enqueue(new Callback<List<BooksDao>>() {
             @Override
-            public void onResponse(Call<BooksDao> call,
-                                   Response<BooksDao> response) {
+            public void onResponse(Call<List<BooksDao>> call,
+                                   Response<List<BooksDao>> response) {
+                textView.setText("ALL BOOKS :\n");
+                for (BooksDao b : response.body()) {
+                    textView.append(b.getName() + "\n");
+                }
                 String query = getQuery();
+                for (int i =0;i<response.body().size();i++){
 
-                if(response.isSuccessful()){
-                    BooksDao dao = response.body();
-                    Toast.makeText(getContext(),dao.getTitle(),Toast.LENGTH_LONG).show();
+                    if(response.body().get(i).getBookId().equalsIgnoreCase(query)||
+                            response.body().get(i).getName().equalsIgnoreCase(query)){
 
+                        //@TODO Handle
 
-                       /* if (dao.getId().equals(query)||
-                                dao.getTitle().equals(query)) {
-                            Toast.makeText(getContext(),
-                                    dao.getTitle(),
-                                    Toast.LENGTH_LONG)
-                                    .show();
+                        String result = response.body().get(i).getName();
+                        Toast.makeText(getContext(),result,
+                                Toast.LENGTH_LONG).show();
+                        break;
 
-                        } else {
-                            Toast.makeText(getActivity(),"NOT FOUND",Toast.LENGTH_SHORT).show();
-                            new AlertDialog.Builder(getContext())
-                                    .setTitle("Not found")
-                                    .setMessage("Please check name or id book again.")
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            isHidden();
-                                        }
-                                    }).setIcon(android.R.drawable.ic_dialog_alert)
-                                    .show();
-                    }*/
-
-                }else{
-                    try {
-                        Toast.makeText(getContext(),response
-                                        .errorBody()
-                                        .string(),
-                                Toast.LENGTH_SHORT)
-                                .show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    }else if(i==(response.body().size()-1)) {
+                        Toast.makeText(getContext(),"Not Found",
+                                Toast.LENGTH_LONG).show();
+                        break;
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<BooksDao> call,
-                                  Throwable t) {
-
-                Toast.makeText(getContext(),t.toString(),
-                        Toast.LENGTH_SHORT)
-                        .show();
+            public void onFailure(Call<List<BooksDao>> call, Throwable t) {
+                t.printStackTrace();
+                textView.setText(t.getMessage());
             }
         });
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.new_game: {
-                //searchView.show(true/false); // animate, ONLY FOR MENU ITEM !
-                return true;
-            }
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-
-
 }

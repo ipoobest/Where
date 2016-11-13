@@ -11,6 +11,8 @@ import android.widget.ImageView;
 
 import com.where.monthonprogramming.where.R;
 
+import static android.R.attr.id;
+
 
 public class MapFragment extends Fragment {
     ViewPager viewPager;
@@ -78,7 +80,7 @@ public class MapFragment extends Fragment {
             }
         }
 
-        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
+        viewPager = (ViewPager) rootView.findViewById(R.id.view_shadow);
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         viewPager.setAdapter(new PagerAdapter() {
             @Override

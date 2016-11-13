@@ -41,14 +41,14 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:src="@drawable/bg4"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg5" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/logo1"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/logo1" />
 
         </RelativeLayout>
 
@@ -57,16 +57,11 @@
             android:layout_height="wrap_content">
 
             <View
-                android:id="@+id/view1"
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-
-            <View
                 android:id="@+id/pink"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_below="@id/view1"
                 android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
                 android:background="#ff00ff" />
 
             <TextView
@@ -76,7 +71,8 @@
                 android:layout_alignBottom="@id/pink"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@id/pink"
-                android:text="Lift" />
+                android:text="Lift"
+                android:textSize="16dp"/>
 
             <View
                 android:id="@+id/red"
@@ -94,7 +90,8 @@
                 android:layout_alignBottom="@id/red"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@id/red"
-                android:text="Stair" />
+                android:text="Stair"
+                android:textSize="16dp"/>
 
             <View
                 android:id="@+id/blue"
@@ -112,7 +109,8 @@
                 android:layout_alignBottom="@id/blue"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@id/blue"
-                android:text="Toilet" />
+                android:text="Toilet"
+                android:textSize="16dp"/>
 
             <View
                 android:id="@+id/yellow"
@@ -130,7 +128,8 @@
                 android:layout_alignBottom="@id/yellow"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@id/yellow"
-                android:text="NFC" />
+                android:text="Check Point"
+                android:textSize="16dp"/>
 
         </RelativeLayout>
 

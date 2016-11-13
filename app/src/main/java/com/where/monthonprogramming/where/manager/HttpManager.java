@@ -5,6 +5,9 @@ import android.content.Context;
 import com.where.monthonprogramming.where.Util.Contextor;
 import com.where.monthonprogramming.where.manager.http.ApiService;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -25,9 +28,10 @@ public class HttpManager {
     private HttpManager() {
         mContext =  Contextor.getInstance().getContext();
 
+
         Retrofit retrofit = new Retrofit.Builder()
                 //ใส่ base url ของ service เรา
-                .baseUrl("192.168.43.90:3000/book/")
+                .baseUrl("http://192.168.43.92:3000/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -38,5 +42,6 @@ public class HttpManager {
     public ApiService getService() {
         return service;
     }
+
 
 }

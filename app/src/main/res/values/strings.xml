@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Where</string>
     <string name="open_drawer">Open Menu</string>
-    <string name="close_drawer">Close drawer</string>
+    <string name="close_drawer">Close Menu</string>
+    <string name="toilet">Toilet</string>
+    <string name="lift">Lift</string>
 </resources>

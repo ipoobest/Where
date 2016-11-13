@@ -3,6 +3,8 @@ package com.where.monthonprogramming.where.manager.http;
 import android.app.Fragment;
 
 import com.where.monthonprogramming.where.dao.BookItemDao;
+import com.where.monthonprogramming.where.dao.BooksDao;
+import com.where.monthonprogramming.where.dao.PhotoItemCollectionDao;
 import com.where.monthonprogramming.where.fragment.SearchFragment;
 
 import java.util.Objects;
@@ -15,7 +17,7 @@ import retrofit2.http.POST;
  */
 
 public interface ApiService {
-    @POST("query")
-    Call<BookItemDao> loadPhotolist();
+    @POST("/books")
+    Call<BooksDao> loadBooks();
 
 }

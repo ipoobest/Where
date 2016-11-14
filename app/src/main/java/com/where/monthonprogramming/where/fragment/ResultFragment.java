@@ -47,7 +47,7 @@ public class ResultFragment extends Fragment {
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
         viewId = getArguments().getString("var");
-        Toast.makeText(getContext(),viewId,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(),viewId,Toast.LENGTH_SHORT).show();
 
         switch (viewId){
             case "view1":{

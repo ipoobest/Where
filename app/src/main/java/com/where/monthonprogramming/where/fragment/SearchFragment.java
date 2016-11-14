@@ -1,16 +1,15 @@
 package com.where.monthonprogramming.where.fragment;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,8 +19,8 @@ import com.where.monthonprogramming.where.R;
 import com.where.monthonprogramming.where.activity.ResultActivity;
 import com.where.monthonprogramming.where.dao.BooksDao;
 import com.where.monthonprogramming.where.manager.HttpManager;
+
 import java.util.List;
-import java.util.logging.Handler;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +30,11 @@ import retrofit2.Response;
 public class SearchFragment extends Fragment {
 
     private ProgressBar progressBar;
+
+    Animation anim;
+    View view;
+    View view18;
+    View view19;
 
 
     TextView textView;
@@ -78,6 +82,42 @@ public class SearchFragment extends Fragment {
 
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
+
+        if(result != null) {
+            anim = new AlphaAnimation(0, 1);
+            anim.setDuration(3000);
+            switch (result) {
+                case "view18":
+
+                    view18 = rootView.findViewById(R.id.view18);
+                    view = rootView.findViewById(R.id.view);
+                    view19 = rootView.findViewById(R.id.view19);
+                    view.setAlpha(0);
+                    view19.setAlpha(0);
+                    view18.startAnimation(anim);
+
+
+                    break;
+
+
+                case "view":
+                    view18 = rootView.findViewById(R.id.view18);
+                    view = rootView.findViewById(R.id.view);
+                    view19 = rootView.findViewById(R.id.view19);
+                    view18.setAlpha(0);
+                    view19.setAlpha(0);
+                    view.startAnimation(anim);
+                    break;
+                case "view19":
+                    view18 = rootView.findViewById(R.id.view18);
+                    view = rootView.findViewById(R.id.view);
+                    view19 = rootView.findViewById(R.id.view19);
+                    view18.setAlpha(0);
+                    view.setAlpha(0);
+                    view19.startAnimation(anim);
+                    break;
+            }
+        }
 
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);

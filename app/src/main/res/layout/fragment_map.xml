@@ -21,7 +21,7 @@
     android:layout_height="match_parent"
     android:weightSum="50"
     android:orientation="horizontal"
-    android:background="@drawable/shelf44">
+    android:background="@drawable/shelf4">
 
     <View
         android:layout_width="0dp"

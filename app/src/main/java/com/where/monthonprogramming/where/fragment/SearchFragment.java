@@ -1,10 +1,7 @@
 package com.where.monthonprogramming.where.fragment;
 
-import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,10 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.where.monthonprogramming.where.R;
-import com.where.monthonprogramming.where.activity.ResultActivity;
 import com.where.monthonprogramming.where.dao.BooksDao;
 import com.where.monthonprogramming.where.manager.HttpManager;
 import java.util.List;
+import java.util.logging.Handler;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,8 +28,11 @@ import retrofit2.Response;
 
 public class SearchFragment extends Fragment {
 
-    TextView textView;
     private ProgressBar progressBar;
+
+
+    TextView textView;
+
     private static String query;
 
     public String getQuery() {
@@ -76,7 +76,11 @@ public class SearchFragment extends Fragment {
 
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
+
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
+
         textView = (TextView) rootView.findViewById(R.id.textView);
 
         searchView = (com.lapism.searchview.SearchView) rootView
@@ -88,11 +92,12 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                if(query != null && !query.isEmpty()){
+                progressBar.setVisibility(ProgressBar.VISIBLE);
+
+                if (query != null && !query.isEmpty()) {
                     //Toast.makeText(getActivity(),query,Toast.LENGTH_SHORT).show();
                     setQuery(query);
                     callService();
-
 
                     InputMethodManager inputManager = (InputMethodManager)
                             getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -153,31 +158,23 @@ public class SearchFragment extends Fragment {
         Call<List<BooksDao>> call = HttpManager.getInstance()
                 .getService()
                 .all();
-//55
+
         call.enqueue(new Callback<List<BooksDao>>() {
             @Override
             public void onResponse(Call<List<BooksDao>> call,
                                    Response<List<BooksDao>> response) {
-                /*textView.setText("ALL BOOKS :\n");
-                for (BooksDao b : response.body()) {
-                    textView.append(b.getName() + "\n");
-                }*/
+
                 String query = getQuery();
                 for (int i =0;i<response.body().size();i++){
 
                     if(response.body().get(i).getBookId().equalsIgnoreCase(query)||
                             response.body().get(i).getName().equalsIgnoreCase(query)){
 
-                        String var = response.body().get(i).getViewId();
-
                         //@TODO Handle
-                        Intent intent = new Intent(getContext(), ResultActivity.class);
-                        intent.putExtra("var",var);
-                        startActivity(intent);
 
-                        /*String result = response.body().get(i).getName();
+                        String result = response.body().get(i).getName();
                         Toast.makeText(getContext(),result,
-                                Toast.LENGTH_LONG).show();*/
+                                Toast.LENGTH_LONG).show();
                         break;
 
                     }else if(i==(response.body().size()-1)) {
@@ -185,6 +182,9 @@ public class SearchFragment extends Fragment {
                                 Toast.LENGTH_LONG).show();
                         break;
                     }
+
+                    progressBar.setVisibility(ProgressBar.INVISIBLE);
+
                 }
             }
 

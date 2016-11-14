@@ -1,6 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/shelf4"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_marginLeft="142dp"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="172dp"
+        android:id="@+id/view1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view1"
+        android:layout_alignRight="@+id/view1"
+        android:layout_alignEnd="@+id/view1"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/view2" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view2"
+        android:layout_toLeftOf="@+id/view2"
+        android:layout_toStartOf="@+id/view2"
+        android:id="@+id/view3" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:id="@+id/view4"
+        android:layout_below="@+id/view3"
+        android:layout_toLeftOf="@+id/view3"
+        android:layout_toStartOf="@+id/view3" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view4"
+        android:layout_toLeftOf="@+id/view4"
+        android:layout_toStartOf="@+id/view4"
+        android:id="@+id/view5" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view5"
+        android:layout_toLeftOf="@+id/view5"
+        android:layout_toStartOf="@+id/view5"
+        android:id="@+id/view6" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view6"
+        android:layout_toLeftOf="@+id/view6"
+        android:layout_toStartOf="@+id/view6"
+        android:id="@+id/view7" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_above="@+id/view2"
+        android:layout_toLeftOf="@+id/view2"
+        android:layout_toStartOf="@+id/view2"
+        android:id="@+id/view8" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view8"
+        android:layout_toLeftOf="@+id/view8"
+        android:layout_toStartOf="@+id/view8"
+        android:id="@+id/view9" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view9"
+        android:layout_toLeftOf="@+id/view9"
+        android:layout_toStartOf="@+id/view9"
+        android:id="@+id/view10" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view10"
+        android:layout_toLeftOf="@+id/view5"
+        android:layout_toStartOf="@+id/view5"
+        android:id="@+id/view11" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view11"
+        android:layout_toLeftOf="@+id/view6"
+        android:layout_toStartOf="@+id/view6"
+        android:id="@+id/view12" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view12"
+        android:layout_toLeftOf="@+id/view12"
+        android:layout_toStartOf="@+id/view12"
+        android:id="@+id/view13" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_above="@+id/view9"
+        android:layout_toLeftOf="@+id/view9"
+        android:layout_toStartOf="@+id/view9"
+        android:id="@+id/view14" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view14"
+        android:layout_toLeftOf="@+id/view14"
+        android:layout_toStartOf="@+id/view14"
+        android:id="@+id/view15" />
+
+    <View android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/view15"
+        android:layout_toLeftOf="@+id/view15"
+        android:layout_toStartOf="@+id/view15"
+        android:id="@+id/view16" />
+</RelativeLayout>

@@ -72,7 +72,7 @@ public class SearchFragment extends Fragment {
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
 
-        textView = (TextView) rootView.findViewById(R.id.textView);
+
 
         searchView = (com.lapism.searchview.SearchView) rootView
                 .findViewById(R.id.searchView);
@@ -152,10 +152,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onResponse(Call<List<BooksDao>> call,
                                    Response<List<BooksDao>> response) {
-                /*textView.setText("ALL BOOKS :\n");
-                for (BooksDao b : response.body()) {
-                    textView.append(b.getName() + "\n");
-                }*/
+
                 String query = getQuery();
                 for (int i =0;i<response.body().size();i++){
 

@@ -2,6 +2,7 @@ package com.where.monthonprogramming.where.fragment;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.where.monthonprogramming.where.R;
+import com.where.monthonprogramming.where.activity.ResultActivity;
 import com.where.monthonprogramming.where.dao.BooksDao;
 import com.where.monthonprogramming.where.manager.HttpManager;
 import java.util.List;
@@ -171,10 +173,14 @@ public class SearchFragment extends Fragment {
                             response.body().get(i).getName().equalsIgnoreCase(query)){
 
                         //@TODO Handle
+                        String var = response.body().get(i).getViewId();
+                        Intent intent = new Intent(getActivity(), ResultActivity.class);
+                        intent.putExtra("var",var);
+                        startActivity(intent);
 
-                        String result = response.body().get(i).getName();
+                        /*String result = response.body().get(i).getName();
                         Toast.makeText(getContext(),result,
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_LONG).show();*/
                         break;
 
                     }else if(i==(response.body().size()-1)) {

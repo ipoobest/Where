@@ -20,38 +20,60 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.where.monthonprogramming.where.R;
+import com.where.monthonprogramming.where.dao.BooksDao;
+import com.where.monthonprogramming.where.dao.NfcsDao;
 import com.where.monthonprogramming.where.fragment.LandingFragment;
 import com.where.monthonprogramming.where.fragment.NfctabFragment;
 import com.where.monthonprogramming.where.fragment.SearchFragment;
+import com.where.monthonprogramming.where.manager.HttpManager;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.where.monthonprogramming.where.R.id.textView;
+import static java.security.AccessController.getContext;
 
 
 public class LandingActivity extends AppCompatActivity
         implements LandingFragment.Fragmentlistener{
 
     Toolbar toolbar;
+
     public static final String MIME_TEXT_PLAIN = "text/plain";
     public static final String TAG = "NfcDemo";
     private NfcAdapter mNfcAdapter;
+
+    //NFC Value
+    public String getResult() {
+        return result;
+    }
+    public void setResult(String result) {
+        this.result = result;
+    }
+    private String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
+
         if (savedInstanceState == null){
             //First create
-
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.contentContainer, new LandingFragment())
                     .commit();
         }
-
+        //We Handle in method initInstances.
         initInstances();
     }
 
     private void initInstances() {
+        //Create View
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -62,7 +84,9 @@ public class LandingActivity extends AppCompatActivity
 
     @Override
     public void onButtonClickNFC(ImageButton btnNfc) {
+        //NFC Button
         //TODO Handle
+        //replace fragment by NfctabFrahment.
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.contentContainer, new NfctabFragment())
                 .addToBackStack(null)
@@ -78,42 +102,38 @@ public class LandingActivity extends AppCompatActivity
                     .commit();
             return;
         }
+
         if (!mNfcAdapter.isEnabled()) {
+            //NFC Status
             Toast.makeText(this,"Nfc is Disable",
                     Toast.LENGTH_SHORT)
                     .show();
         } else {
+            //NFC Status
             Toast.makeText(this,"Nfc is Enable",
                     Toast.LENGTH_SHORT)
                     .show();
         }
 
+        //NFC execute (When we tap nfc tag)
         handleIntent(getIntent());
 
     }
 
     @Override
     public void onButtonClickSearch(ImageButton btnSearch) {
-
+        //Search Button
         Intent intent = new Intent(LandingActivity.this, SearchActivity.class);
         startActivity(intent);
-
 
     }
 
     @Override
     public void onButtonClickMap(ImageButton btnMap) {
+        //Map button
         Intent intent = new Intent(LandingActivity.this, MapActivity.class);
         startActivity(intent);
     }
-
-//    @Override
-//    public void onButtonClickMap(ImageButton btnNap) {
-//        getSupportFragmentManager().beginTransaction()
-//                .add(R.id.contentContainer, new NfctabFragment())
-//                .addToBackStack(null)
-//                .commit();
-
 
     @Override
     protected void onResume() {
@@ -194,6 +214,7 @@ public class LandingActivity extends AppCompatActivity
             }
         }
     }
+
     private class NdefReaderTask extends AsyncTask<Tag, Void, String> {
 
         @Override
@@ -242,13 +263,53 @@ public class LandingActivity extends AppCompatActivity
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(final String result) {
+            //Get nfc value
             if (result != null) {
-                //Toast.makeText(LandingActivity.this , result, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LandingActivity.this, SearchActivity.class);
-                intent.putExtra("result",result);
-                startActivity(intent);
-            }
+                //set nfc Value
+                setResult(result);
+                //Call service NFCsService
+                Call<List<NfcsDao>> call = HttpManager.getInstance()
+                        .getService()
+                        .all2();
+
+                call.enqueue(new Callback<List<NfcsDao>>() {
+                    @Override
+                    public void onResponse(Call<List<NfcsDao>> call, Response<List<NfcsDao>> response) {
+                        String resultNfc = getResult();
+
+                        for(int i=0;i<response.body().size();i++){
+                            //Find match NfcId
+
+                            if(response.body().get(i).getNfcId().equalsIgnoreCase(resultNfc)){
+                                //Check match between NfcId on service and nfc value on tag.
+                                String resViewId =  response.body().get(i).getViewId();
+                                //send viewId from nfcId on service to SearchActivity
+                                Intent intent = new Intent(LandingActivity.this,SearchActivity.class);
+                                intent.putExtra("result",resViewId);
+                                startActivity(intent);
+                                break;
+                            }
+                            else if (i==(response.body().size()-1)){
+                                //not found nfc on service
+                                Toast.makeText(LandingActivity.this,"NFC WRONG!!",
+                                        Toast.LENGTH_SHORT)
+                                        .show();
+                                break;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<NfcsDao>> call, Throwable t) {
+                        //tell me failure messages
+                        t.printStackTrace();
+                        Log.d("Fail",t.getMessage());
+                    }
+                });
+
+
+            }else {Toast.makeText(LandingActivity.this,"NFC WRONG!!",Toast.LENGTH_SHORT).show();}
         }
     }
 }

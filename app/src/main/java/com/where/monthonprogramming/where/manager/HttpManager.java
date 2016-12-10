@@ -45,7 +45,7 @@ public class HttpManager {
 
         Retrofit retrofit = new Retrofit.Builder()
                 //ใส่ base url ของ service เรา
-                .baseUrl("https://radiant-brook-60185.herokuapp.com")
+                .baseUrl("https://servicewhere.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

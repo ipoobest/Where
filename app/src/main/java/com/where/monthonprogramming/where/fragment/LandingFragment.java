@@ -56,20 +56,18 @@ public class LandingFragment extends Fragment {
         btnNfc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageButton btnNfc = (ImageButton)rootView.findViewById(R.id.nfc_btn);//
-                //handle fragment
+                btnNfc = (ImageButton)rootView.findViewById(R.id.nfc_btn);
+                //Create onClick 'NFC' button
                 Fragmentlistener listener =(Fragmentlistener)getActivity();
                 listener.onButtonClickNFC(btnNfc);
-//                listener.onButtonClickSearch(btnSearch);
-//                listener.onButtonClickMap(btnMap);
 
             }
         });
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageButton btnSearch = (ImageButton)rootView.findViewById(R.id.nfc_search);//
-                //handle fragment
+                btnSearch = (ImageButton)rootView.findViewById(R.id.nfc_search);
+                //Create onClick 'Search' Button
                 Fragmentlistener listener =(Fragmentlistener)getActivity();
                 listener.onButtonClickSearch(btnSearch);
             }
@@ -78,6 +76,7 @@ public class LandingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 btnMap = (ImageButton)rootView.findViewById(R.id.nfc_map);
+                //Create onClick 'Map' Button
                 Fragmentlistener listener =(Fragmentlistener)getActivity();
                 listener.onButtonClickMap(btnMap);
 

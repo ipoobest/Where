@@ -15,13 +15,13 @@ import static android.R.attr.id;
 
 
 public class MapFragment extends Fragment {
+
     ViewPager viewPager;
     int[] mapLibary = {R.drawable.shelf1,
             R.drawable.shelf2,
             R.drawable.shelf3, R.drawable.shelf4, R.drawable.shelf5, R.drawable.shelf6, R.drawable.shelf7};
 
     public MapFragment() {
-        //
         super();
     }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.where.monthonprogramming.where.R;
+import com.where.monthonprogramming.where.activity.LandingActivity;
 import com.where.monthonprogramming.where.activity.ResultActivity;
+import com.where.monthonprogramming.where.activity.SearchActivity;
 import com.where.monthonprogramming.where.dao.BooksDao;
+import com.where.monthonprogramming.where.dao.NfcsDao;
 import com.where.monthonprogramming.where.manager.HttpManager;
 
 import java.util.List;
@@ -50,6 +54,7 @@ public class SearchFragment extends Fragment {
     }
 
     String result;
+    String nfcViewQuery;
     com.lapism.searchview.SearchView searchView;
 
     public SearchFragment() {
@@ -59,7 +64,7 @@ public class SearchFragment extends Fragment {
     public static SearchFragment newInstance(String result) {
         SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
-        args.putString("result", result);
+        args.putString("result", result); //put id view
         fragment.setArguments(args);
         return fragment;
     }
@@ -67,8 +72,7 @@ public class SearchFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        result = getArguments().getString("result");
-        //Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+        result = getArguments().getString("result"); //get id view
     }
 
     @Override
@@ -83,7 +87,10 @@ public class SearchFragment extends Fragment {
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
 
+
+        //Create view from id view (Show location)
         if(result != null) {
+
             anim = new AlphaAnimation(0, 1);
             anim.setDuration(3000);
             switch (result) {
@@ -95,11 +102,7 @@ public class SearchFragment extends Fragment {
                     view.setAlpha(0);
                     view19.setAlpha(0);
                     view18.startAnimation(anim);
-
-
                     break;
-
-
                 case "view":
                     view18 = rootView.findViewById(R.id.view18);
                     view = rootView.findViewById(R.id.view);
@@ -118,13 +121,13 @@ public class SearchFragment extends Fragment {
                     break;
             }
         }
-
+        //loading for query id or name of book
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
         progressBar.setVisibility(ProgressBar.INVISIBLE);
 
         textView = (TextView) rootView.findViewById(R.id.textView);
-
+        //create search view
         searchView = (com.lapism.searchview.SearchView) rootView
                 .findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new com.lapism
@@ -133,13 +136,14 @@ public class SearchFragment extends Fragment {
                 .OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
+                //handle when we search
                 progressBar.setVisibility(ProgressBar.VISIBLE);
-
+                //query a book from service
                 if (query != null && !query.isEmpty()) {
                     //Toast.makeText(getActivity(),query,Toast.LENGTH_SHORT).show();
                     setQuery(query);
-                    callService();
+                    //method calling service
+                    callBooksService();
 
                     InputMethodManager inputManager = (InputMethodManager)
                             getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -195,8 +199,8 @@ public class SearchFragment extends Fragment {
         }
     }
 
-    private void callService() {
-
+    private void callBooksService() {
+        //method call service
         Call<List<BooksDao>> call = HttpManager.getInstance()
                 .getService()
                 .all();
@@ -241,4 +245,5 @@ public class SearchFragment extends Fragment {
             }
         });
     }
+
 }

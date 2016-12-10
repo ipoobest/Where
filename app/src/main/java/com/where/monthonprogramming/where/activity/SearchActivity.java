@@ -27,6 +27,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        //get viewId from LandingActivity
         Intent intent = getIntent();
         result = intent.getStringExtra("result");
 
@@ -34,7 +35,7 @@ public class SearchActivity extends AppCompatActivity {
             //First create
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, SearchFragment.newInstance(result))
+                    .add(R.id.contentContainer, SearchFragment.newInstance(result)) //sent viewId to SearchFragment
                     .commit();
 
             initInstances();

@@ -25,7 +25,7 @@ public class ResultFragment extends Fragment {
     public static ResultFragment newInstance(String var) {
         ResultFragment fragment = new ResultFragment();
         Bundle args = new Bundle();
-        args.putString("var", var);
+        args.putString("var", var); //put id view
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,9 +46,9 @@ public class ResultFragment extends Fragment {
 
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
-        viewId = getArguments().getString("var");
-//        Toast.makeText(getContext(),viewId,Toast.LENGTH_SHORT).show();
+        viewId = getArguments().getString("var"); //get id view
 
+        //Change view color from view id that we get.
         switch (viewId){
             case "view1":{
                 view = rootView.findViewById(R.id.view1);
@@ -84,44 +84,39 @@ public class ResultFragment extends Fragment {
                 break;
             }case "view9":{
                 view = rootView.findViewById(R.id.view5);
-                view.setBackgroundColor(Color.BLACK);
+                view.setBackgroundColor(Color.RED);
                 break;
             }case "view10":{
                 view = rootView.findViewById(R.id.view10);
-                view.setBackgroundColor(Color.BLACK);
+                view.setBackgroundColor(Color.RED);
                 break;
             }case "view11":{
                 view = rootView.findViewById(R.id.view11);
-                view.setBackgroundColor(Color.BLACK);
+                view.setBackgroundColor(Color.RED);
                 break;
             }case "view12":{
                 view = rootView.findViewById(R.id.view12);
-                view.setBackgroundColor(Color.BLACK);
+                view.setBackgroundColor(Color.RED);
                 break;
             }case "view13":{
                 view = rootView.findViewById(R.id.view13);
-                view.setBackgroundColor(Color.BLACK);
+                view.setBackgroundColor(Color.RED);
                 break;
             }case "view14":{
                 view = rootView.findViewById(R.id.view14);
-                view.setBackgroundColor(Color.BLACK);
+                view.setBackgroundColor(Color.RED);
                 break;
             }case "view15":{
                 view = rootView.findViewById(R.id.view15);
-                view.setBackgroundColor(Color.BLACK);
+                view.setBackgroundColor(Color.RED);
                 break;
             }case "view16":{
                 view = rootView.findViewById(R.id.view16);
-                view.setBackgroundColor(Color.BLACK);
+                view.setBackgroundColor(Color.RED);
                 break;
             }
 
-
-
-
-
         }
-        View view = (View) rootView.findViewById(R.id.view1);
     }
 
     @Override

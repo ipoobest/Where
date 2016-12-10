@@ -1,6 +1,7 @@
 package com.where.monthonprogramming.where.manager.http;
 
 import com.where.monthonprogramming.where.dao.BooksDao;
+import com.where.monthonprogramming.where.dao.NfcsDao;
 
 import java.util.List;
 
@@ -19,11 +20,13 @@ public interface ApiService {
     @GET("api/books")
     Call<List<BooksDao>> all();
 
+    @GET("api/nfcs")
+    Call<List<NfcsDao>> all2();
+
     @GET("api/books/{name}")
     Call<BooksDao> get(@Path("name") String name);
 
     @POST("books/new")
     Call<BooksDao> create(@Body BooksDao book);
-
 
 }

@@ -195,8 +195,8 @@ public class SearchFragment extends Fragment {
                 if (query != null && !query.isEmpty()) {
 
                     //ignore spacebar for search.
-                    String s = query.toString().replaceAll(" ","");
-                    setQuery(s);
+                    String newString = query.trim();
+                    setQuery(newString);
 
                     //method calling service
                     callBooksService();

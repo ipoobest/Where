@@ -31,7 +31,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SearchActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.LandingActivity"
 

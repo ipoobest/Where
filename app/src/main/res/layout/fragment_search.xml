@@ -1,62 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
 
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/floor1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="50dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/shelf1" />
+        android:src="@drawable/shelf1"  />
 
-   <com.lapism.searchview.SearchView
+    <ImageView
+        android:id="@+id/floor2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/shelf2"  />
+
+    <ImageView
+        android:id="@+id/floor3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/shelf3" />
+
+
+    <com.lapism.searchview.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_alignParentBottom="true"/>
 
-    <View android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:background="@drawable/circle"
-        android:layout_marginLeft="29dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="73dp"
+    <View
         android:id="@+id/view18"
-        android:layout_above="@+id/view"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp"
+        android:background="@drawable/circlenfc" />
 
-    <View android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:background="@drawable/circle"
-        android:layout_marginLeft="48dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="109dp"
+    <View
         android:id="@+id/view19"
-        android:layout_below="@+id/view"
-        android:layout_toRightOf="@+id/view18"
-        android:layout_toEndOf="@+id/view18" />
-
-    <View android:layout_width="25dp"
+        android:layout_width="25dp"
         android:layout_height="25dp"
-        android:background="@drawable/circle"
+        android:layout_alignRight="@id/view18"
+        android:layout_alignTop="@id/view18"
+        android:background="@drawable/circlenfc" />
+
+    <View
         android:id="@+id/view"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/view19"
-        android:layout_toEndOf="@+id/view19"
-        android:layout_marginLeft="128dp"
-        android:layout_marginStart="128dp" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="129dp"
+        android:layout_marginRight="129dp"
+        android:layout_marginTop="315dp"
+        android:background="@drawable/circlenfc"
+         />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="98dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginBottom="177dp"
+        android:background="@drawable/circlenfc" >
+
+    </View>
 
 </RelativeLayout>

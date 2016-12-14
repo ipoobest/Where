@@ -11,6 +11,9 @@ import com.where.monthonprogramming.where.fragment.ResultFragment;
 public class ResultActivity extends AppCompatActivity {
 
     String var;
+    String bookFloor;
+    String isbn;
+    String bookName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +23,17 @@ public class ResultActivity extends AppCompatActivity {
         if (savedInstanceState == null){
             //First create
 
+
+            //get value from searchFragment.
             Intent intent = getIntent();
             var = intent.getStringExtra("var");
+            bookFloor = intent.getStringExtra("bookFloor");
+            isbn = intent.getStringExtra("isbn");
+            bookName = intent.getStringExtra("bookName");
 
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, ResultFragment.newInstance(var))
+
+            getSupportFragmentManager().beginTransaction() //sent id view ,floor ,book name and isbn to fragment
+                    .add(R.id.contentContainer, ResultFragment.newInstance(var,bookFloor,bookName,isbn))
                     .commit();
         }
 

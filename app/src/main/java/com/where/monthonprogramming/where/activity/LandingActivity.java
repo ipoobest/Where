@@ -35,7 +35,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.where.monthonprogramming.where.R.id.textView;
 import static java.security.AccessController.getContext;
 
 
@@ -284,11 +283,16 @@ public class LandingActivity extends AppCompatActivity
                             if(response.body().get(i).getNfcId().equalsIgnoreCase(resultNfc)){
                                 //Check match between NfcId on service and nfc value on tag.
                                 String resViewId =  response.body().get(i).getViewId();
-                                //send viewId from nfcId on service to SearchActivity
-                                Intent intent = new Intent(LandingActivity.this,SearchActivity.class);
-                                intent.putExtra("result",resViewId);
-                                startActivity(intent);
-                                break;
+                                String nfcFloor = response.body().get(i).getFloor();
+
+                                if(resViewId!=null && nfcFloor!=null) {
+                                    //send floorId and viewId from nfcId on service to SearchActivity
+                                    Intent intent = new Intent(LandingActivity.this, SearchActivity.class);
+                                    intent.putExtra("result", resViewId);
+                                    intent.putExtra("nfcFloor",nfcFloor);
+                                    startActivity(intent);
+                                    break;
+                                }
                             }
                             else if (i==(response.body().size()-1)){
                                 //not found nfc on service

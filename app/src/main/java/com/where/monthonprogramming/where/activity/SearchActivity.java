@@ -1,6 +1,7 @@
 package com.where.monthonprogramming.where.activity;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
     String result;
+    String nfcFloor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +32,13 @@ public class SearchActivity extends AppCompatActivity {
         //get viewId from LandingActivity
         Intent intent = getIntent();
         result = intent.getStringExtra("result");
+        nfcFloor = intent.getStringExtra("nfcFloor");
 
         if (savedInstanceState == null) {
             //First create
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, SearchFragment.newInstance(result)) //sent viewId to SearchFragment
+                    .add(R.id.contentContainer, SearchFragment.newInstance(result,nfcFloor)) //sent viewId and floorId to SearchFragment
                     .commit();
 
             initInstances();
@@ -49,12 +52,7 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
+
 
 
 }

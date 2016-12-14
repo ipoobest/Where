@@ -4,4 +4,6 @@
     <string name="close_drawer">Close Menu</string>
     <string name="toilet">Toilet</string>
     <string name="lift">Lift</string>
+    <string name="stair">Stair</string>
+    <string name="shelf">Shelf</string>
 </resources>

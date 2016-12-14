@@ -2,6 +2,7 @@ package com.where.monthonprogramming.where.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,11 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
+import com.lapism.searchview.SearchView;
 import com.where.monthonprogramming.where.R;
 import com.where.monthonprogramming.where.activity.LandingActivity;
 import com.where.monthonprogramming.where.activity.ResultActivity;
@@ -31,14 +36,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
+
 public class SearchFragment extends Fragment {
 
     private ProgressBar progressBar;
-
-    Animation anim;
+    Animation myFadeInAnimation;
     View view;
+    View view2;
     View view18;
     View view19;
+    ImageView floor1,floor2,floor3,floor4, floor5, floor6, floor7;
 
 
     TextView textView;
@@ -53,18 +60,19 @@ public class SearchFragment extends Fragment {
         this.query = query;
     }
 
+    String nfcFloor;
     String result;
-    String nfcViewQuery;
     com.lapism.searchview.SearchView searchView;
 
     public SearchFragment() {
         super();
     }
 
-    public static SearchFragment newInstance(String result) {
+    public static SearchFragment newInstance(String result,String nfcFloor) {
         SearchFragment fragment = new SearchFragment();
         Bundle args = new Bundle();
-        args.putString("result", result); //put id view
+        args.putString("result", result);//put id view
+        args.putString("nfcFloor",nfcFloor);//put id floor of nfc tag
         fragment.setArguments(args);
         return fragment;
     }
@@ -73,6 +81,7 @@ public class SearchFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         result = getArguments().getString("result"); //get id view
+        nfcFloor = getArguments().getString("nfcFloor");//get id floor
     }
 
     @Override
@@ -85,66 +94,114 @@ public class SearchFragment extends Fragment {
     }
 
     private void initInstances(View rootView) {
+
+
         // Init 'View' instance(s) with rootView.findViewById here
 
+        floor1 = (ImageView) rootView.findViewById(R.id.floor1);
+        floor2 = (ImageView) rootView.findViewById(R.id.floor2);
+        floor3 = (ImageView) rootView.findViewById(R.id.floor3);
+
+        view = rootView.findViewById(R.id.view);
+        view2 = rootView.findViewById(R.id.view2);
+        view18 = rootView.findViewById(R.id.view18);
+        view19 = rootView.findViewById(R.id.view19);
 
         //Create view from id view (Show location)
         if(result != null) {
+            //if we press nfc button or we want to use nfc. (because result get from nfc tag.)
 
-            anim = new AlphaAnimation(0, 1);
-            anim.setDuration(3000);
-            switch (result) {
-                case "view18":
-
-                    view18 = rootView.findViewById(R.id.view18);
-                    view = rootView.findViewById(R.id.view);
-                    view19 = rootView.findViewById(R.id.view19);
-                    view.setAlpha(0);
-                    view19.setAlpha(0);
-                    view18.startAnimation(anim);
-                    break;
-                case "view":
-                    view18 = rootView.findViewById(R.id.view18);
-                    view = rootView.findViewById(R.id.view);
-                    view19 = rootView.findViewById(R.id.view19);
-                    view18.setAlpha(0);
-                    view19.setAlpha(0);
-                    view.startAnimation(anim);
-                    break;
-                case "view19":
-                    view18 = rootView.findViewById(R.id.view18);
-                    view = rootView.findViewById(R.id.view);
-                    view19 = rootView.findViewById(R.id.view19);
-                    view18.setAlpha(0);
-                    view.setAlpha(0);
-                    view19.startAnimation(anim);
-                    break;
+            myFadeInAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.blinking); //blinking animation
+            if(nfcFloor.equals("1")){
+                floor2.setAlpha((float) 0);
+                floor3.setAlpha((float) 0);
+                //floor 1st
+                switch (result) {
+                    case "view":
+                        view18.setAlpha(0);
+                        view19.setAlpha(0);
+                        view2.setAlpha(0);
+                        view.startAnimation(myFadeInAnimation);
+                        break;
+                    case "view2":
+                        view18.setAlpha(0);
+                        view19.setAlpha(0);
+                        view.setAlpha(0);
+                        view2.startAnimation(myFadeInAnimation);
+                    //will have more case soon..
+                }
             }
+            if(nfcFloor.equals("2")){
+                floor1.setAlpha((float) 0);
+                floor3.setAlpha((float) 0);
+                //floor 2nd
+                switch (result) {
+                    case "view18":
+                        view.setAlpha(0);
+                        view2.setAlpha(0);
+                        view19.setAlpha(0);
+                        view18.startAnimation(myFadeInAnimation);
+                        break;
+                    //will have more case soon..
+                }
+            }
+            if(nfcFloor.equals("3")){
+                floor1.setAlpha((float) 0);
+                floor2.setAlpha((float) 0);
+                //floor 3th
+                switch (result) {
+                    case "view19":
+                        view.setAlpha(0);
+                        view2.setAlpha(0);
+                        view18.setAlpha(0);
+                        view19.startAnimation(myFadeInAnimation);
+                        break;
+                    //will have more case soon..
+                }
+            }
+
+
+        }else{
+
+            //when we press search button or don't want to use nfc.
+            floor1.setAlpha((float) 0);
+            floor2.setAlpha((float) 0);
+            floor3.setAlpha((float) 0);
+            view18.setAlpha(0);
+            view.setAlpha(0);
+            view19.setAlpha(0);
+            view2.setAlpha(0);
+
         }
-        //loading for query id or name of book
+        //loading for query id or name of book. (progressBar)
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
         progressBar.setVisibility(ProgressBar.INVISIBLE);
 
-        textView = (TextView) rootView.findViewById(R.id.textView);
+
         //create search view
-        searchView = (com.lapism.searchview.SearchView) rootView
+        searchView = (SearchView) rootView
                 .findViewById(R.id.searchView);
-        searchView.setOnQueryTextListener(new com.lapism
-                .searchview
-                .SearchView
+
+        searchView.setHint("search your books");
+        searchView.setOnQueryTextListener(new SearchView
                 .OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 //handle when we search
                 progressBar.setVisibility(ProgressBar.VISIBLE);
                 //query a book from service
                 if (query != null && !query.isEmpty()) {
-                    //Toast.makeText(getActivity(),query,Toast.LENGTH_SHORT).show();
-                    setQuery(query);
+
+                    //ignore spacebar for search.
+                    String s = query.toString().replaceAll(" ","");
+                    setQuery(s);
+
                     //method calling service
                     callBooksService();
 
+                    //hide keyboard
                     InputMethodManager inputManager = (InputMethodManager)
                             getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -153,21 +210,20 @@ public class SearchFragment extends Fragment {
                     return true;
                 }
                 else {
+                    Toast.makeText(getContext(),"Please put a book name.",Toast.LENGTH_LONG).show();
                     return false;
                 }
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(newText != null && !newText.isEmpty()){return true;}
+                if(newText != null && !newText.isEmpty()){
+                    return true;
+                }
                 else {return false;}
             }
         });
-
-
-
     }
-
-
 
     @Override
     public void onStart() {
@@ -212,22 +268,31 @@ public class SearchFragment extends Fragment {
 
                 String query = getQuery();
                 for (int i =0;i<response.body().size();i++){
-
+                    //We can query a book by a book id or a book name searching
                     if(response.body().get(i).getBookId().equalsIgnoreCase(query)||
                             response.body().get(i).getName().equalsIgnoreCase(query)){
 
                         //@TODO Handle
-                        String var = response.body().get(i).getViewId();
-                        Intent intent = new Intent(getActivity(), ResultActivity.class);
-                        intent.putExtra("var",var);
-                        startActivity(intent);
+                        String idView = response.body().get(i).getViewId();
+                        String bookFloor = response.body().get(i).getFloor();
+                        String bookName = response.body().get(i).getName();
+                        String isbn = response.body().get(i).getBookId();
 
-                        /*String result = response.body().get(i).getName();
-                        Toast.makeText(getContext(),result,
-                                Toast.LENGTH_LONG).show();*/
-                        break;
+
+                        //get idView ,Floor ,book name ,isbn from service.
+
+                        if (idView != null && bookFloor != null && bookName != null && isbn != null) {
+                            Intent intent = new Intent(getActivity(), ResultActivity.class);
+                            intent.putExtra("var", idView);
+                            intent.putExtra("bookFloor",bookFloor);
+                            intent.putExtra("bookName",bookName);
+                            intent.putExtra("isbn",isbn);
+                            startActivity(intent);
+                            break;
+                        }
 
                     }else if(i==(response.body().size()-1)) {
+                        // alert user
                         Toast.makeText(getContext(),"Not Found",
                                 Toast.LENGTH_LONG).show();
                         break;
@@ -240,6 +305,7 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<BooksDao>> call, Throwable t) {
+                //fail to connect service.
                 t.printStackTrace();
                 textView.setText(t.getMessage());
             }

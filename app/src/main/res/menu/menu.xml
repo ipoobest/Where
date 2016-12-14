@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/new_game"
-        android:icon="@drawable/ic_logo"
+        android:icon="@drawable/search_search"
         android:title="@string/toilet"
         app:showAsAction="ifRoom"/>
     <item android:id="@+id/help"
